@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sistem Reward Board</title>
+    <link rel="stylesheet" href="styles.css?v=5-anis-syazana" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PdP Interaktif</p>
+          <h1>Sistem Reward Board</h1>
+        </div>
+        <div class="top-actions">
+          <span id="syncStatus" class="sync-status">Memuat data...</span>
+          <button id="refreshBtn" class="ghost-btn" type="button" title="Muat semula data murid">⟳</button>
+          <button id="resetScoresBtn" class="danger-btn" type="button">Reset Markah</button>
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="Modul Reward Board">
+        <button class="tab active" data-tab="reward" type="button">Reward</button>
+        <button class="tab" data-tab="groups" type="button">Kumpulan</button>
+        <button class="tab" data-tab="picker" type="button">Picker</button>
+        <button class="tab" data-tab="timer" type="button">Timer</button>
+        <button class="tab" data-tab="leaderboard" type="button">Leaderboard</button>
+      </nav>
+
+      <main>
+        <section id="reward" class="panel active">
+          <div class="toolbar">
+            <label>
+              Kelas
+              <select id="rewardClass"></select>
+            </label>
+            <label>
+              Cari murid
+              <input id="studentSearch" type="search" placeholder="Taip nama..." />
+            </label>
+          </div>
+          <div id="studentGrid" class="student-grid"></div>
+        </section>
+
+        <section id="groups" class="panel">
+          <div class="toolbar multi">
+            <label>
+              Kelas
+              <select id="groupClass"></select>
+            </label>
+            <label>
+              Bilangan kumpulan
+              <input id="groupCount" type="number" min="1" max="12" value="4" />
+            </label>
+            <button id="randomGroupsBtn" class="primary-btn" type="button">Jana Rawak</button>
+            <button id="manualGroupsBtn" class="secondary-btn" type="button">Sedia Manual</button>
+          </div>
+          <div class="split-layout">
+            <aside class="manual-pool">
+              <h2>Senarai Murid</h2>
+              <p class="small-note">Murid yang sudah masuk kumpulan akan menjadi kelabu.</p>
+              <div id="manualStudentList" class="name-list"></div>
+            </aside>
+            <div id="groupBoard" class="group-board"></div>
+          </div>
+        </section>
+
+        <section id="picker" class="panel">
+          <div class="picker-layout">
+            <div class="picker-stage">
+              <div class="toolbar">
+                <label>
+                  Kelas
+                  <select id="pickerClass"></select>
+                </label>
+                <div class="segmented" role="group" aria-label="Jenis picker">
+                  <button id="pickStudentMode" class="active" type="button">Murid</button>
+                  <button id="pickGroupMode" type="button">Kumpulan</button>
+                </div>
+              </div>
+              <div id="pickerDisplay" class="picker-display">Tekan pilih untuk mula</div>
+              <div class="picker-actions">
+                <button id="pickBtn" class="primary-btn big" type="button">Pilih Rawak</button>
+                <button id="pickerAddStar" class="star-btn" type="button" disabled>+ Bintang</button>
+                <button id="pickerMinusStar" class="minus-btn" type="button" disabled>- Bintang</button>
+              </div>
+              <p id="pickerHint" class="small-note">Ganjaran picker akan dikemas kini dalam rekod individu murid.</p>
+            </div>
+            <div id="pickerCandidates" class="candidate-strip"></div>
+          </div>
+        </section>
+
+        <section id="timer" class="panel">
+          <div class="timer-card">
+            <div id="timerDisplay" class="timer-display">00:01:00</div>
+            <div class="timer-presets">
+              <button data-seconds="60" type="button">1 minit</button>
+              <button data-seconds="180" type="button">3 minit</button>
+              <button data-seconds="300" type="button">5 minit</button>
+              <button data-seconds="30" type="button">30 saat</button>
+            </div>
+            <div class="custom-time">
+              <label>
+                Custom minit
+                <input id="customMinutes" type="number" min="0" value="0" />
+              </label>
+              <label>
+                Custom saat
+                <input id="customSeconds" type="number" min="0" max="59" value="45" />
+              </label>
+              <button id="setCustomTimer" class="secondary-btn" type="button">Tetapkan</button>
+            </div>
+            <div class="timer-controls">
+              <button id="timerStart" class="primary-btn" type="button">Start</button>
+              <button id="timerPause" class="secondary-btn" type="button">Pause</button>
+              <button id="timerReset" class="danger-btn" type="button">Reset</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="leaderboard" class="panel">
+          <div class="toolbar">
+            <label>
+              Kelas
+              <select id="leaderClass"></select>
+            </label>
+            <div class="segmented" role="group" aria-label="Jenis leaderboard">
+              <button id="leaderStudentMode" class="active" type="button">Individu</button>
+              <button id="leaderGroupMode" type="button">Kumpulan</button>
+            </div>
+          </div>
+          <div id="leaderboardList" class="leaderboard"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="starBurstLayer" class="star-burst-layer" aria-hidden="true"></div>
+    <script src="app.js?v=6-rewardboard-20261005"></script>
+  </body>
+</html>
